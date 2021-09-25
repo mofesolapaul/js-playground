@@ -20,7 +20,12 @@ const app = (() => {
       
       const stack = [];
       for (const character of input) {
-        map.has(character) ? stack.pop(): stack.push(character);
+        if (map.has(character)) {
+          if (!stack.length) return false;
+          stack.pop();
+        } else {
+          stack.push(character);
+        }
       }
       
       return !stack.length;
@@ -54,4 +59,3 @@ const tests = (() => {
 })();
 
 tests.run();
-
